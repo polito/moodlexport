@@ -3,10 +3,10 @@ from xml.dom.minidom import parseString
 from xml.sax.saxutils import unescape
 import io
 import base64
+import math
 
 from bs4 import BeautifulSoup
 from TexSoup import TexSoup
-import numpy as np
 
 
 ####################################
@@ -200,7 +200,7 @@ def clock(utc=0): # returns UTC time (can be shifted)
 #-----------------------------------------------------
 
 def filter_grade(grade):
-    """ DEPENDENCY : numpy
+    """
     we manage the default value of grade.
     grade can be either a bool (the answer is true (100) or not (0)),
     or any int/float value in [-100,100] close enough to Moodle's accepted_values,
@@ -208,7 +208,7 @@ def filter_grade(grade):
     Here 'close enough' within [-100,100] is arbitrarily set to mean 'up to rounding'
     """
     # First we deal with the boolean case
-    if isinstance(grade, bool) or isinstance(grade, np.bool):
+    if isinstance(grade, bool):
         if grade:
             return 100.0
         else:
@@ -221,7 +221,7 @@ def filter_grade(grade):
         else: # we expect a [-100,100] syntax
             # we check if value is close to an accepted value
             for candidate_value in ACCEPTED_GRADES:
-                if np.floor(candidate_value) <= grade <= np.ceil(candidate_value):
+                if math.floor(candidate_value) <= grade <= math.ceil(candidate_value):
                     return candidate_value
             # no match has been found
             raise ValueError('For an answer, the value ' + str(grade) + ' for a (relative) grade is not accepted by Moodle. Accepted values are '+ str(ACCEPTED_VALUES))

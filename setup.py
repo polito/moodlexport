@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="moodlexport",
-    version="0.0.32",
+    version="0.0.33",
     author="Guillaume Garrigos",
     author_email="guillaume.garrigos@lpsm.paris",
     license="MIT",
@@ -23,7 +23,6 @@ setuptools.setup(
     install_requires=[
     'texsoup == 0.2.1',
     'xmltodict >= 0.12.0',
-    'numpy >= 1.18.1',
     'beautifulsoup4 >= 4.8.2',
     'latexifier >= 1.0.5',
     ],

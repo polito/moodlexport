@@ -5,7 +5,6 @@ import os
 import logging
 
 import xmltodict
-import numpy as np  # only for np.bool ... too bad :/
 
 from moodlexport.string_manager import dict_default_question_moodle, set_oparg
 import moodlexport.string_manager as strtools
