@@ -125,7 +125,14 @@ def savestr(string, filename="new.txt", raw=False):
     text_file.close()
 
 def latex_protect(string):
-    return unescape(string, UNESCAPE_LATEX)
+    return (
+        unescape(string, UNESCAPE_LATEX)
+            .replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+            .replace("\"", "&quot;")
+            .replace("'", "&apos;")
+    )
 
 def filename_protect(string): # removes forbidden/annoying characters in filenames
     return unescape(string, UNESCAPE_FILENAME)
